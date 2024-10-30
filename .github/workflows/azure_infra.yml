@@ -28,5 +28,6 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          <TODO Azure CLI Service Plan>
-          <TODO Azure CLI WebApp>
+          az appservice plan create -g ${{ secrets.RG }} -n ${{ secrets.ASP }} --is-linux --number-of-workers 1 --sku B1 --location ${{ secrets.LOC }}
+          az webapp create -g ${{ secrets.RG }} -p ${{ secrets.ASP }} -n ${{ secrets.WEBAPP }}  --runtime "node:20-lts"
+
